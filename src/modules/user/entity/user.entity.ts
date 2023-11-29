@@ -16,4 +16,7 @@ export class UserEntity extends BaseEntity {
 
   @Column()
   isVerified: boolean;
+
+  @Column({ nullable: true })
+  verificationToken: string;
 }

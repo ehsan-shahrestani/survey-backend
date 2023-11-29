@@ -5,6 +5,7 @@ import { UserEntity } from './entity/user.entity';
 import { error } from 'console';
 import { CreateUserdto } from './dto/createUserDto';
 import { MailerService } from '@nestjs-modules/mailer';
+import * as crypto from 'crypto';
 
 @Injectable()
 export class UserService {
@@ -27,22 +28,44 @@ export class UserService {
       );
 
     let newUser = new UserEntity();
+    const verificationToken = this.generateVerificationToken();
+    newUser.verificationToken = verificationToken;
     newUser.age = age;
     newUser.email = email;
     newUser.gender = gender;
     newUser.isVerified = false;
 
-    try {
+    setImmediate(async () => {
       await this.mailservice.sendMail({
         to: email,
-        text: 'hi testslkls',
-        subject: '2o31po23',
+        template: 'verify-email.html',
+        subject: 'Email Verification',
+        context: {
+          verificationLink: `http://localhost:4200/verify-email/${verificationToken}`,
+        },
       });
-    } catch (error) {
-      console.log(error);
-    }
+    });
 
     const savedUser = this.userRepository.save(newUser);
     return savedUser;
+  }
+  private generateVerificationToken(): string {
+    const token = crypto.randomBytes(16).toString('hex');
+    return token;
+  }
+
+  async verifyEmail(token: string): Promise<boolean> {
+    const user = await this.userRepository.findOne({
+      where: { verificationToken: token },
+    });
+
+    if (user) {
+      user.isVerified = true;
+      user.verificationToken = null; // Optional: Clear the verification token after successful verification
+      await this.userRepository.save(user);
+      return true;
+    }
+
+    return false;
   }
 }

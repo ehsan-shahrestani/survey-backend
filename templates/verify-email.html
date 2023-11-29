@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Verification</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f8f8;
+        color: #333;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h2 {
+        color: #007bff;
+      }
+
+      p {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+
+      a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        font-size: 18px;
+        color: #fff;
+        background-color: #007bff;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+
+      a:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Email Verification</h2>
+
+    <p>Thank you for Vote! Please click the link below to verify your email:</p>
+
+    <!-- Replace 'your-frontend-url' with the actual URL of your frontend application -->
+    <a href="<%= verificationLink %>" target="_blank">Verify Email</a>
+    <p>KaraKoo Team</p>
+  </body>
+</html>

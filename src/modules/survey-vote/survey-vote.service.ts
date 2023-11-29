@@ -15,7 +15,6 @@ export class SurveyVoteService {
 
   async receiveUserVote(userVoteDto: UserVoteDto) {
     const { age, email, gender } = userVoteDto;
-
     const createdUser = this.userService.create({
       age: age,
       email: email,

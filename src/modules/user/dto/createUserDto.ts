@@ -1,9 +1,12 @@
-import { ageEnum } from "src/types/age.enum";
-import { GenderEnum } from "src/types/gender.enum";
+import { ageEnum } from 'src/types/age.enum';
+import { GenderEnum } from 'src/types/gender.enum';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 
 export class CreateUserdto {
-    age:ageEnum;
-    gender:GenderEnum;
-    email:string;
-    isVerified:boolean
+  age: ageEnum;
+  gender: GenderEnum;
+  @IsNotEmpty()
+  @IsEmail()
+  email: string;
+  isVerified: boolean;
 }
