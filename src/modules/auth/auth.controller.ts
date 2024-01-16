@@ -12,7 +12,7 @@ export class AuthController {
   constructor(private readonly userService: UserService) {}
 
   @Get('verify-email/:token')
-  async verifyEmail(@Param('token') token: string): Promise<string> {
+  async verifyEmail(@Param('token') token: string) {
     const isVerified = await this.userService.verifyEmail(token);
 
     if (!isVerified)
@@ -21,6 +21,6 @@ export class AuthController {
         HttpStatus.BAD_REQUEST,
       );
 
-    return 'Email verified successfully.';
+    return { message: 'Email verified successfully.' };
   }
 }

@@ -41,7 +41,7 @@ export class UserService {
         template: 'verify-email.html',
         subject: 'Email Verification',
         context: {
-          verificationLink: `http://localhost:4200/verify-email/${verificationToken}`,
+          verificationLink: `http://84.46.252.48/verify-email/${verificationToken}`,
         },
       });
     });
