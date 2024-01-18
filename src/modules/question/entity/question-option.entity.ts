@@ -2,14 +2,15 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { QuestionEntity } from './question.entity';
 import { BaseEntity } from 'src/common/baseEntity';
+import { MultiLanguage } from 'src/types/multi-language';
 
 @Entity({name:'questionOption'})
 export class QuestionOptionEntity extends BaseEntity {
-  @Column()
-  text: string;
+  @Column({type:'json'})
+  text: MultiLanguage[];
 
   @Column()
-  imageBase64:string
+  icon:string
 
   @ManyToOne(() => QuestionEntity, question => question.options)
   question: QuestionEntity;

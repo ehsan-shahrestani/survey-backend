@@ -1,0 +1,12 @@
+{
+    "LABELS": {
+      "USERNAME": "Username"
+    },
+    "BUTTONS": {
+      "SUBMIT": "Submit"
+    },
+    "VALIDATION": {
+      "REQUIRED": "This field is required."
+    }
+  }
+  
