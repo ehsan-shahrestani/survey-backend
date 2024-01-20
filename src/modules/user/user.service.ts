@@ -6,6 +6,7 @@ import { error } from 'console';
 import { CreateUserdto } from './dto/createUserDto';
 import { MailerService } from '@nestjs-modules/mailer';
 import * as crypto from 'crypto';
+import { I18nContext, I18nService } from 'nestjs-i18n';
 
 @Injectable()
 export class UserService {
@@ -13,6 +14,7 @@ export class UserService {
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
     private readonly mailservice: MailerService,
+    private readonly i18n: I18nService
   ) {}
 
   async create(userDto: CreateUserdto) {
@@ -23,7 +25,7 @@ export class UserService {
 
     if (user)
       throw new HttpException(
-        { message: 'Email already exist.' },
+        { message: this.i18n.t('tr.EMAILEXSITS',{ lang:   I18nContext.current().lang }) },
         HttpStatus.BAD_REQUEST,
       );
 

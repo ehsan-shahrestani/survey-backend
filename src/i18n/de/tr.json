@@ -1,12 +1,3 @@
 {
-    "LABELS": {
-      "USERNAME": "Username"
-    },
-    "BUTTONS": {
-      "SUBMIT": "Submit"
-    },
-    "VALIDATION": {
-      "REQUIRED": "This field is required."
-    }
-  }
-  
+  "EMAILEXSITS": "Diese E-Mail existiert bereits."
+}

@@ -25,7 +25,7 @@ import * as path from 'path';
       },
       resolvers:[
         new AcceptLanguageResolver()
-      ]
+      ], 
     }),
     MailerModule.forRoot({
       transport: {
