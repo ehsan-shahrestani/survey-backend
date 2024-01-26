@@ -19,7 +19,7 @@ export class SurveyVoteController {
 
   @Post()
   @UseGuards(TurnstileGuard)
-  reciveVote(@Body() uservote: UserVoteDto) {
-    return this.voteService.receiveUserVote(uservote);
+  reciveVote(@Body() uservote: {input:UserVoteDto ,token:string}) {
+    return this.voteService.receiveUserVote(uservote.input);
   }
 }
